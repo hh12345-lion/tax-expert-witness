@@ -15,7 +15,7 @@ This document is the single source of truth for keyword strategy, content cluste
 | Metadata helper | `lib/metadata.ts` | Live — `createMetadata()` with canonical, `x-default` hreflang, OG `en_GB`, robots |
 | JSON-LD schemas | `lib/schema.ts` | Live — FAQ, breadcrumb, article, homepage, services, `DefinedTermSet` |
 | Site constants | `lib/site.ts` | `SITE_URL`, LinkedIn URL defined |
-| Apex → www redirect | `middleware.ts` | 301 to `www.taxexpertwitness.co.uk` |
+| Apex → www redirect | Netlify dashboard (Primary domain) | Canonicalization handled at the edge — no code-level redirect |
 | Content data + routes | `lib/data/*`, `app/**/page.tsx` | 10 dispute types, 4 tribunals, 5 HMRC types, 6 guides, 8 services — all routed |
 | Root layout | `app/layout.tsx` | `lang="en-GB"`, site metadata, verification meta from env |
 | Sitemap / robots | `scripts/generate-seo.ts` → `public/sitemap.xml`, `public/robots.txt` | 48 URLs; `npm run seo:verify` in build |
@@ -432,7 +432,7 @@ Pre-launch and post-launch SEO tasks cross-referenced to repo files.
 ### Infrastructure
 
 - [ ] **Vercel deploy** — connect repo; set production domain `taxexpertwitness.co.uk` and `www.taxexpertwitness.co.uk`
-- [ ] **DNS** — apex and www CNAME/A records pointing to Vercel (middleware in `middleware.ts` already 301-redirects apex → www)
+- [ ] **DNS** — apex and www CNAME/A records pointing to Netlify (apex → www canonicalization handled by Netlify's Primary domain setting)
 - [ ] **All env vars set** in Vercel production (see `.env.example`):
   - `NEXT_PUBLIC_SITE_URL=https://www.taxexpertwitness.co.uk`
   - `NEXT_PUBLIC_FORMSPREE_ID`

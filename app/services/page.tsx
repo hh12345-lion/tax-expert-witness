@@ -35,7 +35,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-      <CTASection buttonText="Contact Us" />
+      <CTASection buttonText="Make an enquiry" />
     </>
   );
 }

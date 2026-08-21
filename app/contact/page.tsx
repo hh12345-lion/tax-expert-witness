@@ -6,18 +6,18 @@ import { createMetadata } from "@/lib/metadata";
 import { SITE_EMAIL, UK_SERVICE_SCOPE } from "@/lib/site";
 
 export const metadata = createMetadata({
-  title: "Instruct a Tax Expert Witness | TaxExpertWitness.co.uk UK",
+  title: "Instruct a Tax Expert Witness | TaxExpertWitness.co.uk",
   description:
-    "Submit your UK tax dispute details to be matched with a qualified tax expert witness for FTT, HMRC investigation, or tax litigation proceedings in England, Wales, Scotland, or Northern Ireland.",
+    "Send a brief enquiry to be matched with a qualified tax expert witness for FTT, HMRC enquiries, or tax litigation in England, Wales, Scotland, or Northern Ireland.",
   path: "/contact",
 });
 
 const trustPoints = [
-  "CTA and ACA tax specialists with UK tribunal experience",
+  "CTA and ACA specialists with UK tribunal experience",
   "First-tier Tribunal and Upper Tribunal proceedings",
   "CPR Part 35 compliant reports under English procedure",
   "HMRC methodology challenge expertise",
-  "Response within 1 business day (UK time)",
+  "Response within one working day (UK time)",
 ];
 
 export default function ContactPage() {
@@ -30,9 +30,9 @@ export default function ContactPage() {
         ])}
       />
       <PageHero
-        title="Instruct a Tax Expert Witness"
-        subtitle="Submit details of your UK tax dispute. We match instructing solicitors and counsel with qualified tax expert witnesses for HMRC investigations, FTT appeals, and tax litigation governed by United Kingdom law."
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
+        title="Instruct a tax expert witness"
+        subtitle="Send a brief enquiry about your UK tax dispute. We match instructing solicitors and counsel with qualified tax expert witnesses for HMRC enquiries, FTT appeals, and domestic tax litigation."
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Enquiry" }]}
       />
       <section className="py-12 md:py-16">
         <div className="page-container">
@@ -44,8 +44,8 @@ export default function ContactPage() {
               <ContactForm />
             </div>
             <aside className="lg:col-span-1 min-w-0">
-              <div className="rounded-[8px] border border-border bg-section-alt p-5 sm:p-6 lg:sticky lg:top-24">
-                <h2 className="text-lg font-bold text-heading mb-4">Why Instruct Through Us</h2>
+              <div className="rounded-[var(--radius-card)] border border-border border-l-4 border-l-accent bg-white p-5 sm:p-6 lg:sticky lg:top-28 shadow-[var(--shadow-card)]">
+                <h2 className="font-heading text-lg font-semibold text-heading mb-4">Why instruct through us</h2>
                 <ul className="space-y-3">
                   {trustPoints.map((point) => (
                     <li key={point} className="flex items-start gap-3 text-body text-sm">

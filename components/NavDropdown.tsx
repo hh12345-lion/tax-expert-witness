@@ -49,7 +49,7 @@ export default function NavDropdown({
   if (mobile) {
     return (
       <div>
-        <p className="text-xs font-bold uppercase tracking-wider text-primary mb-2">{label}</p>
+        <p className="font-label text-primary mb-2">{label}</p>
         <ul className="space-y-1">
           {viewAll && (
             <li>
@@ -87,7 +87,7 @@ export default function NavDropdown({
     >
       <button
         type="button"
-        className="flex items-center gap-1 px-2 py-2 text-sm font-medium text-body hover:text-primary transition-colors whitespace-nowrap min-h-[44px]"
+        className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-body hover:text-primary transition-colors whitespace-nowrap min-h-[44px] border-b-2 border-transparent hover:border-accent"
         aria-expanded={isOpen}
         aria-haspopup="true"
         aria-controls={panelId}
@@ -113,7 +113,7 @@ export default function NavDropdown({
             align === "right" ? "right-0 left-auto" : "left-0"
           }`}
         >
-          <div className="min-w-[12rem] max-w-[min(20rem,calc(100vw-2rem))] rounded-[8px] border border-border bg-white py-2 shadow-[0_8px_24px_rgba(0,0,0,0.12)]">
+          <div className="min-w-[12rem] max-w-[min(20rem,calc(100vw-2rem))] rounded-[var(--radius-card)] border border-border bg-white py-2 shadow-[var(--shadow-card)]">
             {viewAll && (
               <Link
                 href={viewAll.href}

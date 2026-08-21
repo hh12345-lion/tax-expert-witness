@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { IBM_Plex_Sans, Spectral } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieConsentProvider from "@/components/cookies/CookieConsentProvider";
@@ -7,9 +7,17 @@ import ConsentModeInit from "@/components/cookies/ConsentModeInit";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-const inter = Inter({
+const spectral = Spectral({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "600", "700"],
+  variable: "--font-spectral",
+  display: "swap",
+});
+
+const ibmPlex = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-ibm-plex",
   display: "swap",
 });
 
@@ -46,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-GB" className={`${inter.variable} h-full`}>
+    <html lang="en-GB" className={`${spectral.variable} ${ibmPlex.variable} h-full`}>
       <body className="min-h-full flex flex-col antialiased">
         <ConsentModeInit />
         <CookieConsentProvider>

@@ -2,17 +2,17 @@ import Link from "next/link";
 
 export default function AlertBanner() {
   return (
-    <div className="bg-accent/10 border-b border-accent/30">
+    <div className="bg-accent-soft border-b border-accent/20">
       <div className="page-container py-3">
         <p className="text-sm md:text-base text-body leading-relaxed break-words">
-          <span className="font-semibold text-accent mr-1">⚠ 2025–2026 HMRC Enforcement:</span>
-          Transfer pricing yield up sharply. COP9 methodology under judicial scrutiny (HMRC v Harte [2026]).
-          MTIC VAT assessments challenged. Tax expert evidence is increasingly decisive in tribunal outcomes.{" "}
+          <span className="font-semibold text-accent mr-1">HMRC enforcement update:</span>
+          Transfer pricing yield rising sharply. COP9 methodology under judicial scrutiny (HMRC v Harte [2026]).
+          MTIC VAT assessments contested. Expert evidence increasingly decisive at the First-tier Tribunal.{" "}
           <Link
             href="/guides/hmrc-enforcement-update-2025"
             className="font-semibold text-accent underline hover:text-primary transition-colors"
           >
-            See enforcement update →
+            Read the update →
           </Link>
         </p>
       </div>

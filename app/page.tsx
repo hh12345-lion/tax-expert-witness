@@ -59,9 +59,9 @@ export default function HomePage() {
         <div className="page-container text-center">
           <Link
             href="/contact"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-[4px] bg-accent px-8 py-3 text-base font-semibold text-white hover:bg-accent/90 transition-colors"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-[var(--radius-pill)] bg-accent px-8 py-3 text-base font-semibold text-white hover:bg-accent/90 transition-colors"
           >
-            Contact Us
+            Make an enquiry
           </Link>
         </div>
       </section>

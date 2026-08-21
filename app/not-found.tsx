@@ -19,8 +19,8 @@ const quickLinks = [
     href: "/hmrc-investigation-types",
   },
   {
-    title: "Instruct an Expert",
-    description: "Submit your case details. Response within 1 business day.",
+    title: "Instruct an expert",
+    description: "Send a brief enquiry. We aim to respond within one working day.",
     href: "/contact",
   },
 ];
@@ -65,16 +65,17 @@ export default function NotFound() {
           <div className="text-center">
             <Link
               href="/"
-              className="inline-flex min-h-[44px] items-center justify-center rounded-[4px] bg-accent px-8 py-3 text-base font-semibold text-white hover:bg-accent/90 transition-colors"
+              className="inline-flex min-h-[44px] items-center justify-center rounded-[var(--radius-pill)] bg-accent px-8 py-3 text-base font-semibold text-white hover:bg-accent/90 transition-colors"
             >
-              Return to Homepage
+              Return to homepage
             </Link>
           </div>
         </div>
       </section>
       <CTASection
-        title="Need a Tax Expert Witness?"
-        description="Submit your case details and we will match you with a qualified UK tax technical specialist."
+        title="Need a tax expert witness?"
+        description="Send a brief enquiry and we will match you with a qualified UK tax technical specialist."
+        buttonText="Make an enquiry"
       />
     </>
   );

@@ -100,7 +100,7 @@ export default function DetailPageLayout({
           </div>
         </div>
       </section>
-      <CTASection buttonText="Contact Us" />
+      <CTASection buttonText="Make an enquiry" />
     </>
   );
 }

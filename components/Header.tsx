@@ -40,25 +40,48 @@ export default function Header() {
   }, [menuOpen]);
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-border shadow-sm pt-[env(safe-area-inset-top)]">
-      <div className="page-container">
-        <div className="flex h-16 lg:h-[72px] items-center justify-between gap-4">
+    <header className="sticky top-0 z-50 pt-[env(safe-area-inset-top)]">
+      <div className="bg-primary text-white">
+        <div className="page-container flex items-stretch gap-0">
           <Link
             href="/"
-            className="shrink-0 text-base sm:text-lg font-bold text-primary hover:text-primary/80 transition-colors max-w-[55vw] sm:max-w-none truncate sm:overflow-visible sm:whitespace-normal"
+            className="flex min-w-0 flex-1 items-center gap-3 py-3 sm:py-4 lg:flex-none lg:pr-10"
             onMouseEnter={() => setOpenDropdown(null)}
           >
-            TaxExpertWitness<span className="text-accent">.co.uk</span>
+            <span
+              className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-[6px] bg-accent font-heading text-lg font-bold text-white"
+              aria-hidden="true"
+            >
+              T
+            </span>
+            <span className="min-w-0">
+              <span className="block font-heading text-base leading-tight sm:text-lg md:text-xl">
+                Tax Expert Witness
+              </span>
+              <span className="font-label mt-0.5 block text-white/60">
+                United Kingdom · taxexpertwitness.co.uk
+              </span>
+            </span>
           </Link>
 
+          <div className="hidden lg:flex items-center">
+            <span className="uk-badge border-white/20 bg-white/10 text-white/90 before:bg-accent">
+              UK jurisdictions only
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div className="border-b border-border bg-white shadow-[var(--shadow-nav)]">
+        <div className="page-container flex h-14 items-center justify-between gap-4">
           <nav
-            className="hidden xl:flex items-center gap-0.5 flex-1 justify-center"
+            className="hidden xl:flex items-center gap-1 flex-1"
             aria-label="Main navigation"
             onMouseLeave={() => setOpenDropdown(null)}
           >
             <Link
               href="/"
-              className="px-2 py-2 text-sm font-medium text-body hover:text-primary transition-colors whitespace-nowrap min-h-[44px] flex items-center"
+              className="px-3 py-2 text-sm font-medium text-body hover:text-primary transition-colors whitespace-nowrap min-h-[44px] flex items-center border-b-2 border-transparent hover:border-accent"
               onMouseEnter={() => setOpenDropdown(null)}
             >
               Home
@@ -67,35 +90,35 @@ export default function Header() {
               label="Services"
               href="/services"
               links={serviceNavLinks}
-              viewAll={{ label: "All Services", href: "/services" }}
+              viewAll={{ label: "All services", href: "/services" }}
               {...dropdownProps(DROPDOWN_IDS.services)}
             />
             <Link
               href="/tax-disputes-explained"
-              className="px-2 py-2 text-sm font-medium text-body hover:text-primary transition-colors whitespace-nowrap min-h-[44px] flex items-center"
+              className="px-3 py-2 text-sm font-medium text-body hover:text-primary transition-colors whitespace-nowrap min-h-[44px] flex items-center border-b-2 border-transparent hover:border-accent"
               onMouseEnter={() => setOpenDropdown(null)}
             >
-              Tax Disputes
+              Tax disputes
             </Link>
             <NavDropdown
-              label="Tax Dispute Types"
+              label="Dispute types"
               href="/tax-dispute-types"
               links={taxDisputeTypeNavLinks}
-              viewAll={{ label: "All Dispute Types", href: "/tax-dispute-types" }}
+              viewAll={{ label: "All dispute types", href: "/tax-dispute-types" }}
               {...dropdownProps(DROPDOWN_IDS.disputeTypes)}
             />
             <NavDropdown
               label="Tribunals"
               href="/tribunals-courts"
               links={tribunalNavLinks}
-              viewAll={{ label: "All Tribunals", href: "/tribunals-courts" }}
+              viewAll={{ label: "All tribunals", href: "/tribunals-courts" }}
               {...dropdownProps(DROPDOWN_IDS.tribunals)}
             />
             <NavDropdown
-              label="HMRC Investigations"
+              label="HMRC enquiries"
               href="/hmrc-investigation-types"
               links={hmrcInvestigationNavLinks}
-              viewAll={{ label: "All Investigation Types", href: "/hmrc-investigation-types" }}
+              viewAll={{ label: "All enquiry types", href: "/hmrc-investigation-types" }}
               align="right"
               {...dropdownProps(DROPDOWN_IDS.hmrc)}
             />
@@ -109,15 +132,15 @@ export default function Header() {
 
           <Link
             href="/contact"
-            className="hidden sm:inline-flex min-h-[44px] items-center justify-center rounded-[4px] bg-accent px-4 py-2 text-sm font-semibold text-white hover:bg-accent/90 transition-colors shrink-0"
+            className="hidden sm:inline-flex min-h-[44px] items-center justify-center rounded-[var(--radius-pill)] bg-accent px-5 py-2 text-sm font-semibold text-white hover:bg-accent/90 transition-colors shrink-0 ml-auto xl:ml-0"
             onMouseEnter={() => setOpenDropdown(null)}
           >
-            Contact Us
+            Make an enquiry
           </Link>
 
           <button
             type="button"
-            className="xl:hidden min-h-[44px] min-w-[44px] flex items-center justify-center rounded-[4px] border border-border text-primary"
+            className="xl:hidden min-h-[44px] min-w-[44px] flex items-center justify-center rounded-[var(--radius-sm)] border border-border text-primary ml-auto"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -135,13 +158,14 @@ export default function Header() {
 
       {menuOpen && (
         <nav
-          className="xl:hidden border-t border-border bg-white max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain"
+          className="xl:hidden border-b border-border bg-white max-h-[calc(100dvh-8rem)] overflow-y-auto overscroll-contain animate-slide-down shadow-[var(--shadow-nav)]"
           aria-label="Mobile navigation"
         >
           <div className="px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] space-y-6">
+            <span className="uk-badge">UK jurisdictions only</span>
             <Link
               href="/"
-              className="block min-h-[44px] flex items-center px-2 text-body font-medium hover:text-primary transition-colors"
+              className="block min-h-[44px] flex items-center px-2 text-body font-medium hover:text-primary transition-colors border-l-2 border-transparent hover:border-accent"
               onClick={closeMenu}
             >
               Home
@@ -149,7 +173,7 @@ export default function Header() {
             <NavDropdown
               label="Services"
               links={serviceNavLinks}
-              viewAll={{ label: "All Services", href: "/services" }}
+              viewAll={{ label: "All services", href: "/services" }}
               onNavigate={closeMenu}
               mobile
               isOpen={false}
@@ -158,15 +182,15 @@ export default function Header() {
             />
             <Link
               href="/tax-disputes-explained"
-              className="block min-h-[44px] flex items-center px-2 text-body font-medium hover:text-primary transition-colors"
+              className="block min-h-[44px] flex items-center px-2 text-body font-medium hover:text-primary transition-colors border-l-2 border-transparent hover:border-accent"
               onClick={closeMenu}
             >
-              Tax Disputes Explained
+              Tax disputes explained
             </Link>
             <NavDropdown
-              label="Tax Dispute Types"
+              label="Dispute types"
               links={taxDisputeTypeNavLinks}
-              viewAll={{ label: "All Dispute Types", href: "/tax-dispute-types" }}
+              viewAll={{ label: "All dispute types", href: "/tax-dispute-types" }}
               onNavigate={closeMenu}
               mobile
               isOpen={false}
@@ -176,7 +200,7 @@ export default function Header() {
             <NavDropdown
               label="Tribunals"
               links={tribunalNavLinks}
-              viewAll={{ label: "All Tribunals", href: "/tribunals-courts" }}
+              viewAll={{ label: "All tribunals", href: "/tribunals-courts" }}
               onNavigate={closeMenu}
               mobile
               isOpen={false}
@@ -184,9 +208,9 @@ export default function Header() {
               onClose={() => {}}
             />
             <NavDropdown
-              label="HMRC Investigations"
+              label="HMRC enquiries"
               links={hmrcInvestigationNavLinks}
-              viewAll={{ label: "All Investigation Types", href: "/hmrc-investigation-types" }}
+              viewAll={{ label: "All enquiry types", href: "/hmrc-investigation-types" }}
               onNavigate={closeMenu}
               mobile
               isOpen={false}
@@ -204,10 +228,10 @@ export default function Header() {
             />
             <Link
               href="/contact"
-              className="flex min-h-[44px] w-full items-center justify-center rounded-[4px] bg-accent px-4 py-3 text-base font-semibold text-white hover:bg-accent/90 transition-colors"
+              className="flex min-h-[44px] w-full items-center justify-center rounded-[var(--radius-pill)] bg-accent px-4 py-3 text-base font-semibold text-white hover:bg-accent/90 transition-colors"
               onClick={closeMenu}
             >
-              Contact Us
+              Make an enquiry
             </Link>
           </div>
         </nav>

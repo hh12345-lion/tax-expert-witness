@@ -90,7 +90,7 @@ export default async function ServicePage({ params }: Props) {
           </div>
         </div>
       </section>
-      <CTASection buttonText="Contact Us" />
+      <CTASection buttonText="Make an enquiry" />
     </>
   );
 }

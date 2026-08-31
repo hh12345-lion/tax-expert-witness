@@ -12,9 +12,8 @@ function trimStr(v: unknown, max = 500): string {
 }
 
 /**
- * POST /api/submit-lead
- * Webhook is primary (five-key payload per Lead_notification_setup.md).
- * Optional Google Sheets append soft-fails (one tab + Form Type column).
+ * Soft-fail webhook + soft-fail Sheets.
+ * Never return "Form submission is not configured" when either path can store.
  */
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
@@ -42,64 +41,71 @@ export async function POST(request: Request) {
   }
 
   const webhookUrl = getLeadWebhookUrl();
-  const sheetsConfigured = isGoogleSheetsConfigured();
+  let forwarded = false;
 
-  if (!webhookUrl && !sheetsConfigured) {
-    return NextResponse.json(
-      {
-        error: "LEAD_DESTINATION_MISSING",
-        message:
-          "Configure Lead_notification_url or Google Sheets credentials.",
-      },
-      { status: 503 }
-    );
-  }
-
-  // Webhook primary — hard-fail only when the webhook is configured and fails.
-  if (webhookUrl) {
-    let upstream: Response;
+  if (webhookUrl?.trim()) {
     try {
-      upstream = await notifyLeadWebhook({
+      const upstream = await notifyLeadWebhook({
         fullName,
         email,
         phone,
         message: description,
       });
-    } catch {
-      return NextResponse.json(
-        { error: "WEBHOOK_UNREACHABLE" },
-        { status: 502 }
+      forwarded = upstream.ok;
+      if (!upstream.ok) {
+        console.error(
+          "[submit-lead] webhook rejected — continuing with Sheets fallback",
+          upstream.status
+        );
+      }
+    } catch (err) {
+      console.error(
+        "[submit-lead] webhook failed — continuing with Sheets fallback",
+        err
       );
     }
-
-    if (!upstream.ok) {
-      return NextResponse.json(
-        { error: "WEBHOOK_REJECTED", status: upstream.status },
-        { status: 502 }
-      );
-    }
+  } else {
+    console.warn(
+      "[submit-lead] Lead_notification_url missing — continuing with Sheets fallback"
+    );
   }
 
-  // Soft-fail Sheets — never block a successful webhook path.
-  if (sheetsConfigured) {
-    const wrote = await writeLeadToSheetSafely({
-      fullName,
-      email,
-      phone,
-      organisation,
-      description,
-      formType,
-    });
-    if (!wrote && !webhookUrl) {
-      return NextResponse.json(
-        {
-          error: "SHEETS_WRITE_FAILED",
-          message: "Could not save your submission.",
-        },
-        { status: 502 }
-      );
-    }
+  const writtenToSheet = await writeLeadToSheetSafely({
+    fullName,
+    email,
+    phone,
+    organisation,
+    description,
+    formType,
+    role: trimStr(body.role, 120),
+    disputeType: trimStr(body.disputeType ?? body.dispute_type, 200),
+    forum: trimStr(body.forum, 200),
+    forensicAccountant: trimStr(
+      body.forensicAccountant ?? body.forensic_accountant,
+      80
+    ),
+    taxValue: trimStr(body.taxValue ?? body.tax_value, 120),
+    hearingDate: trimStr(body.hearingDate ?? body.hearing_date, 80),
+    urgency: trimStr(body.urgency, 80),
+  });
+
+  if (!forwarded && !writtenToSheet) {
+    return NextResponse.json(
+      {
+        error: "Lead storage failed",
+        message:
+          "Set Lead_notification_url and/or Google Sheets env vars (GOOGLE_SERVICE_ACCOUNT_EMAIL, GOOGLE_PRIVATE_KEY, GOOGLE_SHEET_ID, GOOGLE_SHEET_TAB_NAME) on Netlify, then redeploy.",
+        sheetsConfigured: isGoogleSheetsConfigured(),
+        webhookConfigured: Boolean(webhookUrl?.trim()),
+      },
+      { status: 503 }
+    );
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({
+    ok: true,
+    success: true,
+    forwarded,
+    writtenToSheet,
+  });
 }

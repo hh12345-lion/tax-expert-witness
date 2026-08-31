@@ -29,7 +29,12 @@ export default function ContactForm() {
         body: JSON.stringify(payload),
       });
 
-      if (res.ok) {
+      const result = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        success?: boolean;
+      };
+
+      if (res.ok && (result.ok || result.success || res.status === 200)) {
         window.location.href = "/thank-you";
       } else {
         setStatus("error");

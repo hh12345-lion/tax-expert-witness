@@ -12,11 +12,33 @@ interface AppendResult {
   updatedRange: string | null | undefined;
 }
 
+/** Normalise PEM from env — literal \\n, quotes, whitespace. */
+export function normalizePrivateKey(raw?: string): string | undefined {
+  if (!raw) return undefined;
+
+  let key = raw.trim();
+  if (
+    (key.startsWith('"') && key.endsWith('"')) ||
+    (key.startsWith("'") && key.endsWith("'"))
+  ) {
+    key = key.slice(1, -1);
+  }
+  key = key.replace(/\\n/g, "\n");
+
+  if (!key.includes("BEGIN PRIVATE KEY")) {
+    console.error(
+      "GOOGLE_PRIVATE_KEY is invalid. Paste the full private_key from the service account JSON."
+    );
+    return undefined;
+  }
+  return key;
+}
+
 function getAuthClient() {
   return new google.auth.GoogleAuth({
     credentials: {
-      client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+      client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL?.trim(),
+      private_key: normalizePrivateKey(process.env.GOOGLE_PRIVATE_KEY),
     },
     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
   });
@@ -28,9 +50,9 @@ function getSheetsClient(): sheets_v4.Sheets {
 
 export function isGoogleSheetsConfigured(): boolean {
   return Boolean(
-    process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL &&
-      process.env.GOOGLE_PRIVATE_KEY &&
-      process.env.GOOGLE_SHEET_ID
+    process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL?.trim() &&
+      normalizePrivateKey(process.env.GOOGLE_PRIVATE_KEY) &&
+      process.env.GOOGLE_SHEET_ID?.trim()
   );
 }
 
@@ -39,9 +61,12 @@ export async function appendRow(
   target?: SheetTarget
 ): Promise<AppendResult> {
   const sheets = getSheetsClient();
-  const spreadsheetId = target?.spreadsheetId || process.env.GOOGLE_SHEET_ID;
+  const spreadsheetId =
+    target?.spreadsheetId || process.env.GOOGLE_SHEET_ID?.trim();
   const sheetName =
-    target?.sheetName || process.env.GOOGLE_SHEET_TAB_NAME || "Sheet1";
+    target?.sheetName?.trim() ||
+    process.env.GOOGLE_SHEET_TAB_NAME?.trim() ||
+    "Sheet1";
 
   if (!spreadsheetId) {
     throw new Error("Missing spreadsheet ID: set GOOGLE_SHEET_ID");
@@ -66,9 +91,12 @@ export async function readRows(
   target?: SheetTarget
 ): Promise<{ success: boolean; rows: CellValue[][] }> {
   const sheets = getSheetsClient();
-  const spreadsheetId = target?.spreadsheetId || process.env.GOOGLE_SHEET_ID;
+  const spreadsheetId =
+    target?.spreadsheetId || process.env.GOOGLE_SHEET_ID?.trim();
   const sheetName =
-    target?.sheetName || process.env.GOOGLE_SHEET_TAB_NAME || "Sheet1";
+    target?.sheetName?.trim() ||
+    process.env.GOOGLE_SHEET_TAB_NAME?.trim() ||
+    "Sheet1";
 
   if (!spreadsheetId) {
     throw new Error("Missing spreadsheet ID");
@@ -87,7 +115,7 @@ export async function readRows(
 
 export async function getSpreadsheetInfo(spreadsheetId?: string) {
   const sheets = getSheetsClient();
-  const id = spreadsheetId || process.env.GOOGLE_SHEET_ID;
+  const id = spreadsheetId || process.env.GOOGLE_SHEET_ID?.trim();
 
   if (!id) {
     throw new Error("Missing spreadsheet ID");

@@ -5,7 +5,14 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-# /api/submit-lead handled by Next.js API route (@netlify/plugin-nextjs)
+# Production: POST /api/submit-lead → app/api/submit-lead/route.ts (webhook + soft-fail Sheets).
+# Netlify function kept for local/functions-only use — do not force-redirect in production
+# or Sheets soft-fail in the Next route will be skipped.
+# [[redirects]]
+#   from = "/api/submit-lead"
+#   to = "/.netlify/functions/submit-lead"
+#   status = 200
+#   force = true
 
 [[headers]]
   for = "/sitemap.xml"

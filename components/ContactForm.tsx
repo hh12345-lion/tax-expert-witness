@@ -18,7 +18,8 @@ export default function ContactForm() {
       email: String(data.get("email") ?? "").trim(),
       phone: String(data.get("phone") ?? "").trim(),
       organisation: String(data.get("organisation") ?? "").trim(),
-      description: String(data.get("description") ?? "").trim(),
+      formType: "contact" as const,
+      message: String(data.get("message") ?? "").trim(),
     };
 
     try {
@@ -86,12 +87,12 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="description" className={labelClass}>
+        <label htmlFor="message" className={labelClass}>
           Brief enquiry <span className="text-accent">*</span>
         </label>
         <textarea
-          id="description"
-          name="description"
+          id="message"
+          name="message"
           required
           rows={4}
           className={`${inputClass} min-h-[100px] resize-y`}

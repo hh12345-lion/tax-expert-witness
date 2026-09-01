@@ -4,6 +4,39 @@
  */
 
 const BRAND_NAME = "Tax Expert Witness";
+const DEFAULT_SHEET_TAB_NAME = BRAND_NAME;
+
+function trimEnvQuotes(value) {
+  if (value == null) return undefined;
+  let v = String(value).trim();
+  if (
+    (v.startsWith('"') && v.endsWith('"')) ||
+    (v.startsWith("'") && v.endsWith("'"))
+  ) {
+    v = v.slice(1, -1).trim();
+  }
+  return v || undefined;
+}
+
+function normalizeSpreadsheetId(raw) {
+  const trimmed = trimEnvQuotes(raw);
+  if (!trimmed) return undefined;
+  const fromUrl = trimmed.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
+  if (fromUrl && fromUrl[1]) return fromUrl[1];
+  return trimmed;
+}
+
+function resolveSheetTabName() {
+  const raw =
+    trimEnvQuotes(process.env.GOOGLE_SHEET_TAB_NAME) || DEFAULT_SHEET_TAB_NAME;
+  return raw.replace(/\s+/g, " ").trim();
+}
+
+function appendRangeForTab(sheetName) {
+  const name = sheetName || DEFAULT_SHEET_TAB_NAME;
+  if (/^[A-Za-z0-9_]+$/.test(name)) return `${name}!A:A`;
+  return `'${name.replace(/'/g, "''")}'!A:A`;
+}
 
 function getSiteDomain() {
   const raw =
@@ -22,24 +55,27 @@ function getLeadNotificationUrl() {
 }
 
 function normalizePrivateKey(raw) {
-  if (!raw) return undefined;
-  let key = String(raw).trim();
-  if (
-    (key.startsWith('"') && key.endsWith('"')) ||
-    (key.startsWith("'") && key.endsWith("'"))
-  ) {
-    key = key.slice(1, -1);
+  const trimmed = trimEnvQuotes(raw);
+  if (!trimmed) return undefined;
+  let key = trimmed;
+  for (let i = 0; i < 3 && key.includes("\\n"); i += 1) {
+    key = key.replace(/\\n/g, "\n");
   }
-  key = key.replace(/\\n/g, "\n");
+  key = key.trim();
+  if (key.includes("BEGIN PRIVATE KEY") && !key.includes("\n")) {
+    key = key
+      .replace("-----BEGIN PRIVATE KEY-----", "-----BEGIN PRIVATE KEY-----\n")
+      .replace("-----END PRIVATE KEY-----", "\n-----END PRIVATE KEY-----");
+  }
   if (!key.includes("BEGIN PRIVATE KEY")) return undefined;
   return key;
 }
 
 function isGoogleSheetsConfigured() {
   return Boolean(
-    process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL?.trim() &&
+    trimEnvQuotes(process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL) &&
       normalizePrivateKey(process.env.GOOGLE_PRIVATE_KEY) &&
-      process.env.GOOGLE_SHEET_ID?.trim()
+      normalizeSpreadsheetId(process.env.GOOGLE_SHEET_ID)
   );
 }
 
@@ -74,15 +110,15 @@ async function appendLeadToSheet(payload) {
     return false;
   }
 
-  const spreadsheetId = process.env.GOOGLE_SHEET_ID.trim();
-  const sheetName = (process.env.GOOGLE_SHEET_TAB_NAME || "Sheet1").trim();
+  const spreadsheetId = normalizeSpreadsheetId(process.env.GOOGLE_SHEET_ID);
+  const sheetName = resolveSheetTabName();
   const formType =
     String(payload.formType || "contact").toLowerCase() === "instruct"
       ? "Instruct"
       : "Contact";
 
   const token = await getAccessToken();
-  const range = encodeURIComponent(`${sheetName}!A:A`);
+  const range = encodeURIComponent(appendRangeForTab(sheetName));
   const url =
     `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}:append` +
     "?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS";
@@ -224,7 +260,7 @@ exports.handler = async (event) => {
   } catch (err) {
     console.error("Google Sheets error (submit-lead fn):", {
       message: err && err.message,
-      tab: (process.env.GOOGLE_SHEET_TAB_NAME || "Sheet1").trim(),
+      tab: resolveSheetTabName(),
     });
   }
 

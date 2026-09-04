@@ -4,8 +4,10 @@ import { hmrcInvestigations } from "@/lib/data/hmrc-investigations";
 import { guides } from "@/lib/data/guides";
 import { services } from "@/lib/data/services";
 
+import { getPublicSiteUrl } from "@/lib/site";
+
 /** Canonical production host for sitemap and robots */
-export const CANONICAL_HOST = "https://www.taxexpertwitness.co.uk";
+export const CANONICAL_HOST = getPublicSiteUrl();
 
 export const APP_STATIC_PATHS: string[] = [
   "/",

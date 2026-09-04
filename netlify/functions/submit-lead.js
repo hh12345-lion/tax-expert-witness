@@ -40,7 +40,7 @@ function appendRangeForTab(sheetName) {
 
 function getSiteDomain() {
   const raw =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://www.taxexpertwitness.co.uk";
+    process.env.NEXT_PUBLIC_SITE_URL || "https://taxexpertwitness.co.uk";
   try {
     return new URL(raw).hostname.replace(/^www\./, "");
   } catch {

@@ -5,4 +5,4 @@ Disallow: /thank-you
 Disallow: /api/
 Disallow: /_next/
 
-Sitemap: https://www.taxexpertwitness.co.uk/sitemap.xml
+Sitemap: https://taxexpertwitness.co.uk/sitemap.xml

@@ -8,7 +8,15 @@
 # Production: POST /api/submit-lead → app/api/submit-lead/route.ts (webhook + soft-fail Sheets).
 # Netlify function kept for local/functions-only use — do not force-redirect in production
 # or Sheets soft-fail in the Next route will be skipped.
-# [[redirects]]
+# # AHREFS_WWW_APEX_REDIRECT — flatten https://www → apex (reduces Ahrefs redirect-chain)
+[[redirects]]
+  from = "/*"
+  to = "https://taxexpertwitness.co.uk/:splat"
+  status = 301
+  force = true
+  conditions = {Host = ["www.taxexpertwitness.co.uk"]}
+
+[[redirects]]
 #   from = "/api/submit-lead"
 #   to = "/.netlify/functions/submit-lead"
 #   status = 200

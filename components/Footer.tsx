@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CookieSettingsLink from "@/components/cookies/CookieSettingsLink";
+import { PreferredSourceButton } from "@/components/PreferredSourceButton";
 import {
   serviceNavLinks,
   resourcesNavLinks,
@@ -130,6 +131,7 @@ export default function Footer() {
             <Link href="/what-is-a-tax-expert-witness" className="hover:text-white transition-colors">
               About expert witnesses
             </Link>
+            <PreferredSourceButton theme="dark" />
           </div>
         </div>
       </div>

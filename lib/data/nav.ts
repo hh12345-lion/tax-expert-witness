@@ -27,6 +27,7 @@ export const hmrcInvestigationNavLinks: NavLink[] = hmrcInvestigations.map((h) =
 
 export const resourcesNavLinks: NavLink[] = [
   { label: "Guides", href: "/guides" },
+  { label: "Blog", href: "/blog" },
   { label: "How to Instruct", href: "/how-to-instruct" },
   { label: "Qualifications", href: "/qualifications" },
 ];

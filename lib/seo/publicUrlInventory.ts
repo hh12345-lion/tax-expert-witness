@@ -3,6 +3,7 @@ import { tribunalsCourts } from "@/lib/data/tribunals-courts";
 import { hmrcInvestigations } from "@/lib/data/hmrc-investigations";
 import { guides } from "@/lib/data/guides";
 import { services } from "@/lib/data/services";
+import { getBlogSlugs } from "@/lib/blog";
 
 import { getPublicSiteUrl } from "@/lib/site";
 
@@ -20,6 +21,7 @@ export const APP_STATIC_PATHS: string[] = [
   "/qualifications",
   "/how-to-instruct",
   "/guides",
+  "/blog",
   "/glossary",
   "/contact",
 ];
@@ -31,6 +33,7 @@ function dynamicPaths(): string[] {
     ...tribunalsCourts.map((t) => `/tribunals-courts/${t.slug}`),
     ...hmrcInvestigations.map((h) => `/hmrc-investigation-types/${h.slug}`),
     ...guides.map((g) => `/guides/${g.slug}`),
+    ...getBlogSlugs().map((slug) => `/blog/${slug}`),
   ];
 }
 
@@ -52,7 +55,7 @@ export function buildPublicUrlInventory(): PublicUrlInventory {
 export function getChangeFreq(path: string): string {
   if (path === "/") return "weekly";
   if (path === "/privacy" || path === "/terms" || path === "/cookies") return "yearly";
-  if (path.startsWith("/guides")) return "monthly";
+  if (path.startsWith("/guides") || path.startsWith("/blog")) return "monthly";
   if (path.includes("tax-dispute") || path.includes("tribunals") || path.includes("hmrc")) {
     return "monthly";
   }
@@ -70,7 +73,8 @@ export function getPriority(path: string): number {
     path === "/tax-dispute-types" ||
     path === "/tribunals-courts" ||
     path === "/hmrc-investigation-types" ||
-    path === "/guides"
+    path === "/guides" ||
+    path === "/blog"
   ) {
     return 0.9;
   }
@@ -80,6 +84,7 @@ export function getPriority(path: string): number {
     path.startsWith("/tribunals-courts/") ||
     path.startsWith("/hmrc-investigation-types/") ||
     path.startsWith("/guides/") ||
+    path.startsWith("/blog/") ||
     path.startsWith("/services/")
   ) {
     return 0.7;

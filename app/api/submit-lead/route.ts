@@ -4,6 +4,7 @@ import {
   getLeadWebhookUrl,
   notifyLeadWebhook,
 } from "@/lib/leadNotification";
+import { resolveLeadMessage } from "@/lib/resolveLeadMessage";
 import { writeLeadToSheetSafely } from "@/lib/submitLead";
 
 function trimStr(v: unknown, max = 500): string {
@@ -28,10 +29,7 @@ export async function POST(request: Request) {
   const phone = trimStr(body.phone, 80);
   const formType = trimStr(body.formType ?? body.form_type, 40) || "contact";
   const organisation = trimStr(body.organisation, 300);
-  const description = trimStr(
-    body.message ?? body.description ?? body.caseDescription,
-    8000
-  );
+  const description = trimStr(resolveLeadMessage(body), 8000);
 
   if (!fullName || !email) {
     return NextResponse.json(

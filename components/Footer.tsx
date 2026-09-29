@@ -20,6 +20,9 @@ export default function Footer() {
           <Link href="/terms" className="hover:text-white transition-colors">
             Terms
           </Link>
+          <Link href="/blog" className="hover:text-white transition-colors">
+            Blog
+          </Link>
           <Link
             href="/what-is-a-tax-expert-witness"
             className="hover:text-white transition-colors"

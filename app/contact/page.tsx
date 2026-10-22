@@ -17,7 +17,7 @@ const trustPoints = [
   "First-tier Tribunal and Upper Tribunal proceedings",
   "CPR Part 35 compliant reports under English procedure",
   "HMRC methodology challenge expertise",
-  "Response within one working day (UK time)",
+  "Replies by email to every enquiry",
 ];
 
 export default function ContactPage() {

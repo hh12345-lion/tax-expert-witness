@@ -255,7 +255,7 @@ export const taxDisputeTypes: TaxDisputeType[] = [
     paragraphs: [
       "Proceeds of Crime Act (POCA) proceedings involving tax fraud typically rely on HMRC's forensic reconstruction of undeclared income to calculate the criminal benefit figure. Tax expert witnesses challenge this by identifying where the reconstruction relies on flawed methodology, ignores actual circumstances, or fails to apply HMRC's own approved methods for business records reconstruction.",
       "In POCA proceedings, the forensic accountant addresses the financial numbers while the tax expert addresses the technical tax analysis, whether HMRC's assessment of the correct tax position is correct. This complementary approach is frequently the most effective strategy in complex tax fraud cases.",
-      "COP9 investigations can escalate to criminal proceedings where the taxpayer refuses the Contractual Disclosure Facility or HMRC determines the criminal route is more appropriate. Expert witnesses with experience in both civil COP9 and criminal tax proceedings are essential in navigating this evolving landscape in 2025–2026.",
+      "COP9 investigations can escalate to criminal proceedings where the taxpayer refuses the Contractual Disclosure Facility or HMRC determines the criminal route is more appropriate. Expert witnesses with experience in both civil COP9 and criminal tax proceedings are essential in navigating this evolving landscape in 2025 to 2026.",
     ],
     faqs: [
       {
@@ -266,7 +266,7 @@ export const taxDisputeTypes: TaxDisputeType[] = [
       {
         question: "When does a COP9 investigation become criminal?",
         answer:
-          "COP9 is a civil investigation procedure, the taxpayer makes a full disclosure under the Contractual Disclosure Facility (CDF). Where the taxpayer refuses COP9 or HMRC determines the criminal route is more appropriate, criminal investigation follows. HMRC is increasingly considering whether its approach to COP9 investigations is appropriate, a live debate in the tax disputes community in 2025–2026.",
+          "COP9 is a civil investigation procedure, the taxpayer makes a full disclosure under the Contractual Disclosure Facility (CDF). Where the taxpayer refuses COP9 or HMRC determines the criminal route is more appropriate, criminal investigation follows. HMRC is increasingly considering whether its approach to COP9 investigations is appropriate, a live debate in the tax disputes community in 2025 to 2026.",
       },
     ],
     relatedInvestigation: { label: "HMRC Criminal Investigation", href: "/hmrc-investigation-types/hmrc-criminal-investigation" },

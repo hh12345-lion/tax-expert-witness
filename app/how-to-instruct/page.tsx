@@ -73,17 +73,17 @@ export default function HowToInstructPage() {
               <tr>
                 <td>2</td>
                 <td>Expert selection and initial enquiry</td>
-                <td>Week 1–2</td>
+                <td>Week 1 to 2</td>
               </tr>
               <tr>
                 <td>3</td>
                 <td>Letter of instruction and document bundle</td>
-                <td>Week 2–4</td>
+                <td>Week 2 to 4</td>
               </tr>
               <tr>
                 <td>4</td>
                 <td>Expert report (standard track)</td>
-                <td>8–12 weeks</td>
+                <td>8 to 12 weeks</td>
               </tr>
               <tr>
                 <td>5</td>
@@ -93,12 +93,12 @@ export default function HowToInstructPage() {
               <tr>
                 <td>6</td>
                 <td>Hearing preparation and joint expert discussion</td>
-                <td>4–8 weeks before hearing</td>
+                <td>4 to 8 weeks before hearing</td>
               </tr>
               <tr>
                 <td>7</td>
                 <td>Tribunal hearing attendance</td>
-                <td>Typically 2–3 years from appeal</td>
+                <td>Typically 2 to 3 years from appeal</td>
               </tr>
             </tbody>
           </table>

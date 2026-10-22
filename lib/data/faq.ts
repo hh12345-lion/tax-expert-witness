@@ -14,7 +14,7 @@ export const faqItems: FAQ[] = [
   {
     question: "When is a tax expert witness needed at the First-tier Tribunal?",
     answer:
-      "Expert evidence is needed at the FTT where a technical accounting or valuation question requires specialist evidence beyond the parties' own accounts, HMRC's reconstruction methodology is challenged, or a valuation (business, shares, property) is central to the tax liability. FTT cases typically take 2–3 years from appeal to hearing, making early instruction essential.",
+      "Expert evidence is needed at the FTT where a technical accounting or valuation question requires specialist evidence beyond the parties' own accounts, HMRC's reconstruction methodology is challenged, or a valuation (business, shares, property) is central to the tax liability. FTT cases typically take 2 to 3 years from appeal to hearing, making early instruction essential.",
   },
   {
     question: "What is COP8 and when is expert evidence needed?",
@@ -44,12 +44,12 @@ export const faqItems: FAQ[] = [
   {
     question: "How much does a tax expert witness cost?",
     answer:
-      "UK tax expert witnesses typically charge £250–£600/hour depending on seniority. Report costs range from £5,000–£20,000 for standard FTT technical opinions to £15,000–£50,000+ for complex track or Upper Tribunal reports. Transfer pricing reports can cost £20,000–£100,000+ given the economic analysis required.",
+      "UK tax expert witnesses typically charge £250 to £600/hour depending on seniority. Report costs range from £5,000 to £20,000 for standard FTT technical opinions to £15,000 to £50,000+ for complex track or Upper Tribunal reports. Transfer pricing reports can cost £20,000 to £100,000+ given the economic analysis required.",
   },
   {
     question: "How early should I instruct a tax expert witness?",
     answer:
-      "As early as possible. FTT cases typically take 2–3 years from notice of appeal to hearing. Early instruction allows adequate time for document review, analysis, report preparation, and response to written questions. For COP9 investigations, expert review before disclosure is particularly critical.",
+      "As early as possible. FTT cases typically take 2 to 3 years from notice of appeal to hearing. Early instruction allows adequate time for document review, analysis, report preparation, and response to written questions. For COP9 investigations, expert review before disclosure is particularly critical.",
   },
   {
     question: "Can a tax expert and forensic accountant work together?",

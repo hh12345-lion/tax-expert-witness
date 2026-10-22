@@ -20,7 +20,7 @@ const quickLinks = [
   },
   {
     title: "Instruct an expert",
-    description: "Send a brief enquiry. We aim to respond within one working day.",
+    description: "Send a brief enquiry and we will reply by email.",
     href: "/contact",
   },
 ];

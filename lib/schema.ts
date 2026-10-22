@@ -114,6 +114,8 @@ export const homepageSchema = {
       "@id": `${SITE_URL}/#organization`,
       name: "TaxExpertWitness",
       url: SITE_URL,
+      logo: `${SITE_URL}/brand/icon-512.png`,
+      image: `${SITE_URL}/brand/og.png`,
       email: SITE_EMAIL,
       address: {
         "@type": "PostalAddress",

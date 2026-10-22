@@ -103,7 +103,7 @@ export default function HmrcInvestigationTypesHubPage() {
               { label: "Tax Disputes Explained (master pillar)", href: "/tax-disputes-explained" },
               { label: "HMRC methodology challenge guide", href: "/guides/hmrc-methodology-challenge-guide" },
               { label: "Business records reconstruction disputes", href: "/tax-dispute-types/hmrc-business-records-reconstruction" },
-              { label: "HMRC enforcement update 2025–2026", href: "/guides/hmrc-enforcement-update-2025" },
+              { label: "HMRC enforcement update 2025 to 2026", href: "/guides/hmrc-enforcement-update-2025" },
             ]}
           />
         </div>

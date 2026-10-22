@@ -1,24 +1,29 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-primary: #1a1f36;
-  --color-primary-light: #2a3152;
-  --color-accent: #c41e3a;
-  --color-accent-soft: #fce8eb;
-  --color-highlight: #0d7377;
-  --color-section-alt: #f0f1f5;
-  --color-surface: #fafbfc;
-  --color-border: #d8dce6;
-  --color-heading: #1a1f36;
-  --color-body: #3d4451;
-  --color-muted: #6b7280;
-  --font-heading: var(--font-spectral), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-ibm-plex), system-ui, sans-serif;
-  --radius-card: 12px;
-  --radius-sm: 6px;
+  /* Tax Expert Witness: teal, sage grey, peach, mist and charcoal */
+  --color-primary: #2a3838;
+  --color-primary-light: #3a4a4a;
+  --color-accent: #016b79;
+  --color-accent-soft: #e2eeef;
+  --color-highlight: #016b79;
+  --color-peach: #edb28b;
+  --color-peach-ink: #a8612f;
+  --color-sage: #b5c0be;
+  --color-mist: #f0f4f3;
+  --color-section-alt: #f0f4f3;
+  --color-surface: #fbfcfc;
+  --color-border: #d5dcdb;
+  --color-heading: #2a3838;
+  --color-body: #3c4747;
+  --color-muted: #5e6a69;
+  --font-heading: var(--font-syne), system-ui, sans-serif;
+  --font-sans: var(--font-hanken), system-ui, sans-serif;
+  --radius-card: 2px;
+  --radius-sm: 2px;
   --radius-pill: 9999px;
-  --shadow-card: 0 1px 2px rgba(26, 31, 54, 0.06), 0 8px 24px rgba(26, 31, 54, 0.08);
-  --shadow-nav: 0 4px 20px rgba(26, 31, 54, 0.1);
+  --shadow-card: 0 1px 2px rgba(42, 56, 56, 0.06), 0 10px 28px rgba(42, 56, 56, 0.09);
+  --shadow-nav: 0 4px 20px rgba(42, 56, 56, 0.1);
 }
 
 html {
@@ -36,11 +41,13 @@ body {
   padding-right: env(safe-area-inset-right);
 }
 
-img,
-video,
-svg {
-  max-width: 100%;
-  height: auto;
+@layer base {
+  img,
+  video,
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 .font-heading {
@@ -301,4 +308,75 @@ svg {
 
 .animate-slide-down {
   animation: slide-down 0.25s ease-out;
+}
+
+/* Folio frame: a photograph cut like the ledger pages of the monogram, square at the top with a pointed foot */
+.folio {
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
+}
+
+/* Ledger rule: three short teal lines, as on the pages of the monogram */
+.ledger-rule {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ledger-rule span {
+  display: block;
+  height: 4px;
+  background: #016b79;
+}
+
+.nav-item .nav-panel {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+.nav-item:hover .nav-panel,
+.nav-item:focus-within .nav-panel {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.menu-icon span {
+  display: block;
+  height: 2px;
+  width: 22px;
+  background: currentColor;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+#mobile-nav-toggle:checked ~ div .menu-icon span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+#mobile-nav-toggle:checked ~ div .menu-icon span:nth-child(2) {
+  opacity: 0;
+}
+
+#mobile-nav-toggle:checked ~ div .menu-icon span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+details.fold > summary {
+  list-style: none;
+}
+
+details.fold > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.fold[open] .fold-mark {
+  transform: rotate(45deg);
+}
+
+.footer-cookie button {
+  color: rgb(240 244 243 / 0.7);
+}
+
+.footer-cookie button:hover {
+  color: #f0f4f3;
 }

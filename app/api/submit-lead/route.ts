@@ -52,19 +52,19 @@ export async function POST(request: Request) {
       forwarded = upstream.ok;
       if (!upstream.ok) {
         console.error(
-          "[submit-lead] webhook rejected — continuing with Sheets fallback",
+          "[submit-lead] webhook rejected, continuing with Sheets fallback",
           upstream.status
         );
       }
     } catch (err) {
       console.error(
-        "[submit-lead] webhook failed — continuing with Sheets fallback",
+        "[submit-lead] webhook failed, continuing with Sheets fallback",
         err
       );
     }
   } else {
     console.warn(
-      "[submit-lead] Lead_notification_url missing — continuing with Sheets fallback"
+      "[submit-lead] Lead_notification_url missing, continuing with Sheets fallback"
     );
   }
 

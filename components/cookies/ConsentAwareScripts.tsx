@@ -35,7 +35,7 @@ export default function ConsentAwareScripts({ preferences }: Props) {
 
   return (
     <>
-      {/* Google Analytics - requires analytics consent */}
+      {/* Google Analytics, requires analytics consent */}
       {preferences.analytics && gaId && (
         <>
           <Script
@@ -55,7 +55,7 @@ export default function ConsentAwareScripts({ preferences }: Props) {
         </>
       )}
 
-      {/* Google Tag Manager - requires analytics consent */}
+      {/* Google Tag Manager, requires analytics consent */}
       {preferences.analytics && gtmId && (
         <>
           <Script id="gtm-script" strategy="afterInteractive">
@@ -70,7 +70,7 @@ export default function ConsentAwareScripts({ preferences }: Props) {
         </>
       )}
 
-      {/* Meta Pixel - requires marketing consent */}
+      {/* Meta Pixel, requires marketing consent */}
       {preferences.marketing && metaPixelId && (
         <Script id="meta-pixel" strategy="afterInteractive">
           {`
@@ -88,7 +88,7 @@ export default function ConsentAwareScripts({ preferences }: Props) {
         </Script>
       )}
 
-      {/* LinkedIn Insight Tag - requires marketing consent */}
+      {/* LinkedIn Insight Tag, requires marketing consent */}
       {preferences.marketing && linkedInId && (
         <Script id="linkedin-insight" strategy="afterInteractive">
           {`
@@ -108,7 +108,7 @@ export default function ConsentAwareScripts({ preferences }: Props) {
         </Script>
       )}
 
-      {/* Hotjar - requires preferences consent */}
+      {/* Hotjar, requires preferences consent */}
       {preferences.preferences && hotjarId && (
         <Script id="hotjar" strategy="afterInteractive">
           {`

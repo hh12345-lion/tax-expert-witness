@@ -41,7 +41,7 @@ export default function PrivacyPage() {
 
           <h2>How We Use Your Data</h2>
           <ul>
-            <li>To respond to your enquiry within 1 business day</li>
+            <li>To respond to your enquiry</li>
             <li>To match your case with an appropriate tax expert witness</li>
             <li>To improve our referral service</li>
           </ul>

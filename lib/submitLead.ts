@@ -71,7 +71,7 @@ export async function appendLeadToSheet(payload: LeadFormPayload): Promise<void>
   ]);
 }
 
-/** Soft-fail Sheets append — logs errors, never throws when webhook already succeeded. */
+/** Soft-fail Sheets append, logs errors, never throws when webhook already succeeded. */
 export async function writeLeadToSheetSafely(
   payload: LeadFormPayload,
   context = "submit-lead"

@@ -46,10 +46,10 @@ export const hmrcInvestigations: HmrcInvestigation[] = [
     shortTitle: "Code of Practice 9 (COP9)",
     metaTitle: "Code of Practice 9 (COP9) Tax Expert Witness Support UK | CDF",
     metaDescription:
-      "Expert witness support for UK COP9 investigations, Contractual Disclosure Facility, full disclosure review, and 2025–2026 methodology debate.",
+      "Expert witness support for UK COP9 investigations, Contractual Disclosure Facility, full disclosure review, and 2025 to 2026 methodology debate.",
     paragraphs: [
       "COP9 (Code of Practice 9) is HMRC's most serious civil investigation procedure, the Contractual Disclosure Facility (CDF). HMRC offers the taxpayer civil settlement in exchange for full disclosure of all deliberate tax fraud. Refusal leads to criminal investigation. Tax expert witnesses assist by reviewing the financial records before disclosure, ensuring the disclosure is complete and accurate.",
-      "There is increasing debate in the tax disputes community about whether HMRC is shifting its approach to COP9 investigations in 2025–2026, with some practitioners observing changes in how HMRC is applying the process and considering whether the criminal route is more appropriate in certain cases.",
+      "There is increasing debate in the tax disputes community about whether HMRC is shifting its approach to COP9 investigations in 2025 to 2026, with some practitioners observing changes in how HMRC is applying the process and considering whether the criminal route is more appropriate in certain cases.",
       "Independent forensic review before COP9 disclosure is essential. The tax expert witness reviews HMRC's preliminary reconstruction, challenges methodology where appropriate, and ensures the taxpayer's disclosure accurately reflects the correct tax position, protecting against both under-disclosure and over-disclosure.",
     ],
     faqs: [
@@ -59,7 +59,7 @@ export const hmrcInvestigations: HmrcInvestigation[] = [
           "COP9 (Code of Practice 9) is HMRC's most serious civil investigation procedure, the Contractual Disclosure Facility (CDF). HMRC offers the taxpayer civil settlement in exchange for full disclosure of all deliberate tax fraud. Refusal leads to criminal investigation. Tax expert witnesses assist by reviewing the financial records before disclosure, ensuring the disclosure is complete and accurate.",
       },
       {
-        question: "Is HMRC shifting its COP9 approach in 2025–2026?",
+        question: "Is HMRC shifting its COP9 approach in 2025 to 2026?",
         answer:
           "There is increasing debate in the tax disputes community about whether HMRC is shifting its approach to COP9 investigations, with some practitioners observing changes in how HMRC is applying the process and considering whether the criminal route is more appropriate in certain cases. Expert witnesses with COP9 experience can assist in navigating this evolving landscape.",
       },

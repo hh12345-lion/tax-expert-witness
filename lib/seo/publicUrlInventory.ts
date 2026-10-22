@@ -11,6 +11,7 @@ import { getPublicSiteUrl } from "@/lib/site";
 export const CANONICAL_HOST = getPublicSiteUrl();
 
 export const APP_STATIC_PATHS: string[] = [
+  "/image-credits",
   "/",
   "/services",
   "/tax-disputes-explained",

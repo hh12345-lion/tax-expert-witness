@@ -58,7 +58,7 @@ function sheetRangeForRead(sheetName: string): string {
   return `'${name.replace(/'/g, "''")}'`;
 }
 
-/** Normalise PEM from env — literal \\n, quotes, one-line paste. */
+/** Normalise PEM from env, literal \\n, quotes, one-line paste. */
 export function normalizePrivateKey(raw?: string): string | undefined {
   const trimmed = trimEnvQuotes(raw);
   if (!trimmed) return undefined;

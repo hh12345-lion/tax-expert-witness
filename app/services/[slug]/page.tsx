@@ -10,10 +10,6 @@ import { createMetadata } from "@/lib/metadata";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export async function generateStaticParams() {
-  return services.map((s) => ({ slug: s.id }));
-}
-
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const service = getService(slug);

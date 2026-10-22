@@ -1,5 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
-import AlertBanner from "@/components/AlertBanner";
+import { photos } from "@/lib/photos";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import HubCard from "@/components/HubCard";
@@ -16,8 +17,8 @@ export const metadata = createMetadata({
 });
 
 const stats = [
-  { fact: "FTT cases listed for hearing 2025–26", figure: "Thousands", source: "HMCTS Statistics" },
-  { fact: "Time from appeal to FTT hearing", figure: "Typically 2–3 years", source: "Slaughter and May, 2024" },
+  { fact: "FTT cases listed for hearing 2025 to 26", figure: "Thousands", source: "HMCTS Statistics" },
+  { fact: "Time from appeal to FTT hearing", figure: "Typically 2 to 3 years", source: "Slaughter and May, 2024" },
   { fact: "HMRC transfer pricing yield increase", figure: "Significant rise 2025", source: "Jon Preshaw Tax, March 2026" },
   { fact: "FTT jurisdiction", figure: "Income tax, CT, CGT, IHT, VAT, SDLT, NIC", source: "HMCTS" },
   { fact: "Upper Tribunal role", figure: "Appeal on points of law from FTT", source: "HMCTS" },
@@ -50,19 +51,41 @@ export default function HomePage() {
   return (
     <>
       <JsonLd data={homepageSchema} />
-      <AlertBanner />
       <PageHero
+        large
         title="Tax Expert Witness Services for UK Solicitors & Tax Litigation Counsel"
         subtitle="When a tax dispute reaches the First-tier Tribunal, Upper Tribunal, or Crown Court, the technical tax analysis must be independently verified by a qualified expert. TaxExpertWitness.co.uk connects UK solicitors and tax litigation counsel with qualified tax expert witnesses, specialists in HMRC investigation methodology, tribunal procedure, and independent tax technical opinion."
-      />
-      <section className="py-8 bg-section-alt border-b border-border">
-        <div className="page-container text-center">
-          <Link
-            href="/contact"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-[var(--radius-pill)] bg-accent px-8 py-3 text-base font-semibold text-white hover:bg-accent/90 transition-colors"
-          >
+        label="Independent tax expert witness referrals"
+      >
+        <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+          <Link href="/contact" className="inline-flex min-h-[48px] items-center justify-center bg-accent px-7 font-heading text-sm font-bold text-white transition hover:bg-primary">
             Make an enquiry
           </Link>
+          <Link href="/services" className="inline-flex min-h-[48px] items-center justify-center border border-primary/25 bg-white px-7 font-heading text-sm font-bold text-primary transition hover:border-primary">
+            View services
+          </Link>
+        </div>
+      </PageHero>
+
+      <section className="bg-primary py-16 text-mist">
+        <div className="page-container">
+          <h2 className="max-w-2xl font-heading text-3xl font-bold text-mist md:text-4xl">Where tax disputes are argued</h2>
+          <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { p: photos.somersetHouse, t: "HMRC enquiries", d: "Challenges to assessments, discovery and penalty methodology." },
+              { p: photos.royalCourts, t: "Tribunals and courts", d: "Evidence for the First-tier Tribunal, Upper Tribunal and above." },
+              { p: photos.customHouse, t: "Customs and VAT", d: "Indirect tax, duty and MTIC disputes with HMRC." },
+              { p: photos.lincolnsLibrary, t: "Technical opinion", d: "Independent analysis of the law as it applies to the facts." },
+            ].map((x) => (
+              <li key={x.t}>
+                <div className="folio relative aspect-[4/5] overflow-hidden">
+                  <Image src={x.p.src} alt={x.p.alt} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" className="object-cover" />
+                </div>
+                <h3 className="mt-5 font-heading text-xl font-bold text-mist">{x.t}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-mist/70">{x.d}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -87,7 +110,7 @@ export default function HomePage() {
       <section className="py-14 md:py-20 bg-section-alt">
         <div className="page-container min-w-0">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-heading mb-8 break-words">
-            UK Tax Disputes: Key 2025–2026 Facts
+            UK Tax Disputes: Key 2025 to 2026 Facts
           </h2>
           <div className="table-scroll rounded-[8px] border border-border bg-white shadow-[var(--shadow-card)]">
             <table className="w-full text-sm min-w-[36rem]">

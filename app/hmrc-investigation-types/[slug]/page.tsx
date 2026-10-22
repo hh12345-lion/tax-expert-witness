@@ -7,10 +7,6 @@ import { createMetadata } from "@/lib/metadata";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export async function generateStaticParams() {
-  return hmrcInvestigations.map((h) => ({ slug: h.slug }));
-}
-
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const investigation = getHmrcInvestigation(slug);

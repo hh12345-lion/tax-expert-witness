@@ -3,7 +3,7 @@
 import Script from "next/script";
 
 /**
- * Inline consent mode defaults - runs before any tracking scripts.
+ * Inline consent mode defaults, runs before any tracking scripts.
  * Must load in layout before interactive hydration.
  */
 export default function ConsentModeInit() {

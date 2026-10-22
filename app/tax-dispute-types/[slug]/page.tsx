@@ -7,10 +7,6 @@ import { createMetadata } from "@/lib/metadata";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export async function generateStaticParams() {
-  return taxDisputeTypes.map((d) => ({ slug: d.slug }));
-}
-
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const dispute = getTaxDisputeType(slug);

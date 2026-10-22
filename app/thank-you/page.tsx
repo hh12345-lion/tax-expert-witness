@@ -15,7 +15,7 @@ const nextSteps = [
     step: "1",
     title: "Case review",
     description:
-      "Our team reviews your enquiry and the technical tax questions raised within one working day.",
+      "Our team reviews your enquiry and the technical tax questions raised.",
   },
   {
     step: "2",
@@ -36,7 +36,7 @@ export default function ThankYouPage() {
     <>
       <PageHero
         title="Enquiry received"
-        subtitle="Thank you. We have received your enquiry and will respond within one working day."
+        subtitle="Thank you. We have received your enquiry and will reply by email."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Thank you" }]}
       />
       <section className="py-14 md:py-20">

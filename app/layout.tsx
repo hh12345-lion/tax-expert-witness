@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, Spectral } from "next/font/google";
+import localFont from "next/font/local";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieConsentProvider from "@/components/cookies/CookieConsentProvider";
@@ -7,19 +7,23 @@ import ConsentModeInit from "@/components/cookies/ConsentModeInit";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-const spectral = Spectral({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-spectral",
+const heading = localFont({
+  src: [{ path: "./fonts/syne.woff2", weight: "400 800", style: "normal" }],
+  variable: "--font-syne",
   display: "swap",
 });
 
-const ibmPlex = IBM_Plex_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-ibm-plex",
+const body = localFont({
+  src: [
+    { path: "./fonts/hanken-grotesk.woff2", weight: "100 900", style: "normal" },
+    { path: "./fonts/hanken-grotesk-italic.woff2", weight: "100 900", style: "italic" },
+  ],
+  variable: "--font-hanken",
   display: "swap",
 });
+
+// Every page is rendered on the server for each request.
+export const dynamic = "force-dynamic";
 
 export const viewport = {
   width: "device-width",
@@ -40,6 +44,12 @@ export const metadata: Metadata = {
   },
   description:
     "Find a qualified tax expert witness in the UK. Independent tax technical experts for FTT, Upper Tribunal, HMRC investigations, VAT disputes, transfer pricing, IHT, and professional negligence.",
+  openGraph: {
+    type: "website",
+    siteName: "Tax Expert Witness",
+    images: [{ url: "/brand/og.png", width: 1200, height: 630, alt: "Tax Expert Witness" }],
+  },
+  twitter: { card: "summary_large_image", images: ["/brand/og.png"] },
   verification: {
     google: process.env.GOOGLE_SITE_VERIFICATION,
     other: process.env.BING_SITE_VERIFICATION
@@ -54,7 +64,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-GB" className={`${spectral.variable} ${ibmPlex.variable} h-full`}>
+    <html lang="en-GB" className={`${heading.variable} ${body.variable} h-full`}>
       <body className="min-h-full flex flex-col antialiased">
         <ConsentModeInit />
         <CookieConsentProvider>

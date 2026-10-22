@@ -1,7 +1,7 @@
 /** Live canonical host (apex). */
 const PRODUCTION_SITE_URL = "https://taxexpertwitness.co.uk";
 
-/** Public origin for sitemap/canonicals — never localhost or Netlify preview. */
+/** Public origin for sitemap/canonicals, never localhost or Netlify preview. */
 export function getPublicSiteUrl(): string {
   const fallback = PRODUCTION_SITE_URL;
   const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
@@ -28,9 +28,9 @@ export const SITE_NAME = "TaxExpertWitness";
 export const SITE_EMAIL = "cases@taxexpertwitness.co.uk";
 export const LINKEDIN_URL = "https://www.linkedin.com/company/taxexpertwitness";
 
-/** Shared copy: UK-only service scope (use in footer, contact, terms — not as a banner) */
+/** Shared copy: UK-only service scope (use in footer, contact, terms, not as a banner) */
 export const UK_SERVICE_SCOPE =
-  "TaxExpertWitness.co.uk is a United Kingdom–focused referral service. We connect instructing solicitors, barristers, and advisers with tax expert witnesses experienced in HMRC enquiries, UK tribunal procedure (First-tier Tribunal and Upper Tribunal), and domestic UK tax law including income tax, corporation tax, VAT, IHT, CGT, SDLT, and NIC. We do not provide expert witness referrals for non-UK tax jurisdictions, US federal or state tax proceedings, or disputes governed by foreign tax authorities.";
+  "TaxExpertWitness.co.uk is a UK-focused referral service. We connect instructing solicitors, barristers, and advisers with tax expert witnesses experienced in HMRC enquiries, UK tribunal procedure (First-tier Tribunal and Upper Tribunal), and domestic UK tax law including income tax, corporation tax, VAT, IHT, CGT, SDLT, and NIC. We do not provide expert witness referrals for non-UK tax jurisdictions, US federal or state tax proceedings, or disputes governed by foreign tax authorities.";
 
 export const COLORS = {
   primary: "#1A1F36",

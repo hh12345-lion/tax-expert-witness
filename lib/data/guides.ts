@@ -11,11 +11,11 @@ export type Guide = {
 export const guides: Guide[] = [
   {
     slug: "hmrc-enforcement-update-2025",
-    title: "HMRC Enforcement Update 2025–2026: Transfer Pricing, COP9, and MTIC",
-    shortTitle: "HMRC Enforcement Update 2025–2026",
-    metaTitle: "HMRC Enforcement Update 2025–2026 | Transfer Pricing, COP9 & MTIC",
+    title: "HMRC Enforcement Update 2025 to 2026: Transfer Pricing, COP9, and MTIC",
+    shortTitle: "HMRC Enforcement Update 2025 to 2026",
+    metaTitle: "HMRC Enforcement Update 2025 to 2026 | Transfer Pricing, COP9 & MTIC",
     metaDescription:
-      "2025–2026 HMRC enforcement update for solicitors, transfer pricing yield rise, COP9 methodology debate, HMRC v Harte, and MTIC enforcement trends.",
+      "2025 to 2026 HMRC enforcement update for solicitors, transfer pricing yield rise, COP9 methodology debate, HMRC v Harte, and MTIC enforcement trends.",
     excerpt:
       "Transfer pricing yield up sharply, COP9 methodology under judicial scrutiny, and MTIC assessments increasingly challenged, what solicitors need to know.",
     content: `
@@ -24,7 +24,7 @@ export const guides: Guide[] = [
       <p>Solicitors instructing tax expert witnesses in transfer pricing disputes should ensure the expert has current OECD BEPS familiarity and experience with the specific transfer pricing methods relevant to the transaction type, CUP, Resale Price, Cost Plus, or TNMM.</p>
 
       <h2>COP9 Methodology Under Debate</h2>
-      <p>There is increasing debate in the tax disputes community about whether HMRC is shifting its approach to Code of Practice 9 investigations in 2025–2026. Some practitioners observe changes in how HMRC applies the Contractual Disclosure Facility process and consider whether the criminal route is more appropriate in certain cases.</p>
+      <p>There is increasing debate in the tax disputes community about whether HMRC is shifting its approach to Code of Practice 9 investigations in 2025 to 2026. Some practitioners observe changes in how HMRC applies the Contractual Disclosure Facility process and consider whether the criminal route is more appropriate in certain cases.</p>
       <p>Expert witnesses with COP9 experience are essential for reviewing financial records before disclosure and ensuring the taxpayer's position is accurately represented. Early expert instruction before accepting or responding to a COP9 offer protects the client's interests in this evolving landscape.</p>
 
       <h2>HMRC v Harte [2026]</h2>
@@ -35,7 +35,7 @@ export const guides: Guide[] = [
 
       <h2>What Solicitors Should Do</h2>
       <ul>
-        <li>Instruct tax expert witnesses early, FTT cases take 2–3 years from appeal to hearing</li>
+        <li>Instruct tax expert witnesses early, FTT cases take 2 to 3 years from appeal to hearing</li>
         <li>Challenge HMRC reconstruction methodology, not just the quantum</li>
         <li>Ensure experts have current tax practice experience and FTT testimony history</li>
         <li>Consider ADR with expert-prepared technical analysis before committing to FTT</li>
@@ -48,9 +48,9 @@ export const guides: Guide[] = [
     shortTitle: "FTT Procedure & Expert Evidence",
     metaTitle: "First-tier Tribunal Procedure: Expert Evidence Guide for Solicitors",
     metaDescription:
-      "Solicitor guide to FTT procedure and expert evidence, documentary requirements, CPR Part 35, witness statements, and 2–3 year timelines.",
+      "Solicitor guide to FTT procedure and expert evidence, documentary requirements, CPR Part 35, witness statements, and 2 to 3 year timelines.",
     excerpt:
-      "FTT evidence requirements, CPR Part 35 compliance, case categories, and why early expert instruction is essential given 2–3 year hearing timelines.",
+      "FTT evidence requirements, CPR Part 35 compliance, case categories, and why early expert instruction is essential given 2 to 3 year hearing timelines.",
     content: `
       <h2>FTT Evidence Requirements</h2>
       <p>The First-tier Tribunal (Tax Chamber) process requires careful gathering and organisation of documentary evidence including invoices, contracts, emails, accounting records, and due diligence materials. Witness evidence explains the decisions taken by directors, accountants, or advisers, while expert evidence addresses technical tax questions beyond the parties' own expertise.</p>
@@ -61,14 +61,14 @@ export const guides: Guide[] = [
       <h2>CPR Part 35 in FTT Proceedings</h2>
       <p>Expert evidence in FTT proceedings is governed by CPR Part 35. The expert report must include a summary of material instructions, comply with the independence requirements of CPR Part 35.10, and contain a statement of truth. The expert's duty is to the tribunal, not the instructing party, particularly important in tax cases where technical analysis must be genuinely independent.</p>
 
-      <h2>Timeline: 2–3 Years to Hearing</h2>
-      <p>From filing notice of appeal to FTT hearing typically takes 2–3 years given current caseload and counsel availability. Early instruction of expert witnesses allows adequate time for document review, analysis, report preparation, and response to written questions, avoiding last-minute timetable pressure.</p>
+      <h2>Timeline: 2 to 3 Years to Hearing</h2>
+      <p>From filing notice of appeal to FTT hearing typically takes 2 to 3 years given current caseload and counsel availability. Early instruction of expert witnesses allows adequate time for document review, analysis, report preparation, and response to written questions, avoiding last-minute timetable pressure.</p>
 
       <h2>Practical Steps for Solicitors</h2>
       <ol>
         <li>Identify the technical tax questions requiring expert evidence at case assessment stage</li>
         <li>Instruct the expert with specific questions and full documentary bundle</li>
-        <li>Allow 8–12 weeks for initial expert report in complex cases</li>
+        <li>Allow 8 to 12 weeks for initial expert report in complex cases</li>
         <li>Coordinate expert evidence with factual witness statements</li>
         <li>Prepare for written questions and supplemental report requirements</li>
       </ol>

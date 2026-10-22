@@ -19,17 +19,17 @@ export const tribunalsCourts: TribunalCourt[] = [
     shortTitle: "First-tier Tribunal (Tax)",
     metaTitle: "First-tier Tribunal (Tax) Expert Witness Guide UK | FTT Procedure",
     metaDescription:
-      "Guide to UK First-tier Tribunal (Tax) proceedings for solicitors, FTT jurisdiction, expert evidence rules, CPR Part 35, and 2–3 year timelines.",
+      "Guide to UK First-tier Tribunal (Tax) proceedings for solicitors, FTT jurisdiction, expert evidence rules, CPR Part 35, and 2 to 3 year timelines.",
     paragraphs: [
       "The First-tier Tribunal (Tax Chamber) handles appeals against HMRC decisions on income tax, PAYE, corporation tax, CGT, NIC, IHT, VAT, excise duty, and customs duty. The FTT process requires careful gathering and organisation of documentary evidence including invoices, contracts, emails, accounting records, and due diligence materials, with witness evidence explaining decisions taken and expert evidence addressing technical tax questions.",
-      "From filing notice of appeal to FTT hearing typically takes 2–3 years given current caseload and availability of counsel, making early instruction of expert witnesses essential to allow adequate preparation time. The FTT deals with cases according to complexity in paper, basic, standard, and complex tracks, with expert evidence most common in standard and complex track cases.",
+      "From filing notice of appeal to FTT hearing typically takes 2 to 3 years given current caseload and availability of counsel, making early instruction of expert witnesses essential to allow adequate preparation time. The FTT deals with cases according to complexity in paper, basic, standard, and complex tracks, with expert evidence most common in standard and complex track cases.",
       "Expert evidence in FTT proceedings is governed by CPR Part 35, the expert must include a summary of material instructions and the report must meet the independence and objectivity requirements of CPR Part 35.10. The expert's duty is to the tribunal, not the instructing party.",
     ],
     faqs: [
       {
         question: "How long does an FTT case typically take?",
         answer:
-          "From filing notice of appeal to the FTT hearing typically takes 2–3 years given the current caseload and availability of counsel, making early instruction of expert witnesses essential.",
+          "From filing notice of appeal to the FTT hearing typically takes 2 to 3 years given the current caseload and availability of counsel, making early instruction of expert witnesses essential.",
       },
       {
         question: "What categories of case does the FTT hear?",

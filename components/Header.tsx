@@ -1,241 +1,144 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import NavDropdown from "./NavDropdown";
+import { usePathname } from "next/navigation";
 import {
+  hmrcInvestigationNavLinks,
+  resourcesNavLinks,
   serviceNavLinks,
   taxDisputeTypeNavLinks,
   tribunalNavLinks,
-  hmrcInvestigationNavLinks,
-  resourcesNavLinks,
+  type NavLink,
 } from "@/lib/data/nav";
 
-const DROPDOWN_IDS = {
-  services: "services",
-  disputeTypes: "dispute-types",
-  tribunals: "tribunals",
-  hmrc: "hmrc",
-  resources: "resources",
-} as const;
+type Group = { label: string; href: string; links: NavLink[] };
 
+const groups: Group[] = [
+  { label: "Services", href: "/services", links: serviceNavLinks },
+  { label: "Dispute types", href: "/tax-dispute-types", links: taxDisputeTypeNavLinks },
+  { label: "Tribunals", href: "/tribunals-courts", links: tribunalNavLinks },
+  { label: "HMRC enquiries", href: "/hmrc-investigation-types", links: hmrcInvestigationNavLinks },
+  { label: "Resources", href: "/guides", links: resourcesNavLinks },
+];
+
+function isActive(pathname: string, href: string) {
+  return pathname === href || pathname.startsWith(href + "/");
+}
+
+/** Client only to read the current path; the header is rendered on the server first. */
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const closeMenu = () => setMenuOpen(false);
+  const pathname = usePathname() || "/";
+  const groupOn = (g: Group) => isActive(pathname, g.href) || g.links.some((l) => isActive(pathname, l.href));
 
-  const dropdownProps = (id: string) => ({
-    isOpen: openDropdown === id,
-    onOpen: () => setOpenDropdown(id),
-    onClose: () => setOpenDropdown((current) => (current === id ? null : current)),
-  });
-
-  useEffect(() => {
-    if (!menuOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [menuOpen]);
+  const top =
+    "relative inline-flex min-h-[44px] items-center gap-1.5 whitespace-nowrap font-heading text-[0.88rem] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent";
+  /* The current section carries a small teal folio tab beneath it */
+  const tab = (on: boolean) =>
+    on ? <span aria-hidden="true" className="folio absolute -bottom-[18px] left-1/2 h-3 w-5 -translate-x-1/2 bg-accent" /> : null;
 
   return (
-    <header className="sticky top-0 z-50 pt-[env(safe-area-inset-top)]">
-      <div className="bg-primary text-white">
-        <div className="page-container flex items-stretch gap-0">
-          <Link
-            href="/"
-            className="flex min-w-0 flex-1 items-center gap-3 py-3 sm:py-4 lg:flex-none lg:pr-10"
-            onMouseEnter={() => setOpenDropdown(null)}
-          >
-            <span
-              className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-[6px] bg-accent font-heading text-lg font-bold text-white"
-              aria-hidden="true"
-            >
-              T
-            </span>
-            <span className="min-w-0">
-              <span className="block font-heading text-base leading-tight sm:text-lg md:text-xl">
-                Tax Expert Witness
-              </span>
-              <span className="font-label mt-0.5 block text-white/60">
-                United Kingdom · taxexpertwitness.co.uk
-              </span>
-            </span>
-          </Link>
+    <header className="relative z-50 border-b-4 border-accent bg-white pt-[env(safe-area-inset-top)]">
+      <input key={pathname} id="mobile-nav-toggle" type="checkbox" className="peer sr-only" aria-hidden="true" tabIndex={-1} />
+      <div className="page-container flex items-center justify-between gap-6 py-3.5">
+        <Link href="/" aria-label="Tax Expert Witness home" className="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/logo.svg" alt="Tax Expert Witness" width={749} height={110} className="h-9 w-auto sm:h-10" />
+        </Link>
 
-          <div className="hidden lg:flex items-center">
-            <span className="uk-badge border-white/20 bg-white/10 text-white/90 before:bg-accent">
-              UK jurisdictions only
-            </span>
-          </div>
-        </div>
-      </div>
+        <nav aria-label="Main" className="hidden items-center gap-5 xl:flex">
+          {groups.map((g) => {
+            const on = groupOn(g);
+            return (
+              <div key={g.label} className="nav-item relative">
+                <Link href={g.href} aria-current={pathname === g.href ? "page" : undefined} className={`${top} ${on ? "text-accent" : "text-primary hover:text-accent"}`}>
+                  {g.label}
+                  <svg viewBox="0 0 12 12" className="h-2.5 w-2.5 opacity-60" aria-hidden="true">
+                    <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.6" />
+                  </svg>
+                  {tab(on)}
+                </Link>
+                <div className="nav-panel absolute left-0 top-full z-50 w-80 pt-4 transition duration-150">
+                  <div className="border border-border border-t-4 border-t-accent bg-white shadow-xl">
+                    <ul className="py-2">
+                      {g.links.map((l) => (
+                        <li key={l.href}>
+                          <Link
+                            href={l.href}
+                            aria-current={pathname === l.href ? "page" : undefined}
+                            className={`block px-5 py-2.5 text-sm transition-colors hover:bg-mist focus-visible:bg-mist focus-visible:outline-none ${
+                              pathname === l.href ? "font-semibold text-accent" : "text-body"
+                            }`}
+                          >
+                            {l.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link href={g.href} className="block border-t border-border bg-mist px-5 py-3 font-heading text-xs font-bold uppercase tracking-[0.14em] text-accent hover:text-primary">
+                      All {g.label.toLowerCase()}
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </nav>
 
-      <div className="border-b border-border bg-white shadow-[var(--shadow-nav)]">
-        <div className="page-container flex h-14 items-center justify-between gap-4">
-          <nav
-            className="hidden xl:flex items-center gap-1 flex-1"
-            aria-label="Main navigation"
-            onMouseLeave={() => setOpenDropdown(null)}
-          >
-            <Link
-              href="/"
-              className="px-3 py-2 text-sm font-medium text-body hover:text-primary transition-colors whitespace-nowrap min-h-[44px] flex items-center border-b-2 border-transparent hover:border-accent"
-              onMouseEnter={() => setOpenDropdown(null)}
-            >
-              Home
-            </Link>
-            <NavDropdown
-              label="Services"
-              href="/services"
-              links={serviceNavLinks}
-              viewAll={{ label: "All services", href: "/services" }}
-              {...dropdownProps(DROPDOWN_IDS.services)}
-            />
-            <Link
-              href="/tax-disputes-explained"
-              className="px-3 py-2 text-sm font-medium text-body hover:text-primary transition-colors whitespace-nowrap min-h-[44px] flex items-center border-b-2 border-transparent hover:border-accent"
-              onMouseEnter={() => setOpenDropdown(null)}
-            >
-              Tax disputes
-            </Link>
-            <NavDropdown
-              label="Dispute types"
-              href="/tax-dispute-types"
-              links={taxDisputeTypeNavLinks}
-              viewAll={{ label: "All dispute types", href: "/tax-dispute-types" }}
-              {...dropdownProps(DROPDOWN_IDS.disputeTypes)}
-            />
-            <NavDropdown
-              label="Tribunals"
-              href="/tribunals-courts"
-              links={tribunalNavLinks}
-              viewAll={{ label: "All tribunals", href: "/tribunals-courts" }}
-              {...dropdownProps(DROPDOWN_IDS.tribunals)}
-            />
-            <NavDropdown
-              label="HMRC enquiries"
-              href="/hmrc-investigation-types"
-              links={hmrcInvestigationNavLinks}
-              viewAll={{ label: "All enquiry types", href: "/hmrc-investigation-types" }}
-              align="right"
-              {...dropdownProps(DROPDOWN_IDS.hmrc)}
-            />
-            <NavDropdown
-              label="Resources"
-              links={resourcesNavLinks}
-              align="right"
-              {...dropdownProps(DROPDOWN_IDS.resources)}
-            />
-          </nav>
-
+        <div className="flex items-center gap-3">
           <Link
             href="/contact"
-            className="hidden sm:inline-flex min-h-[44px] items-center justify-center rounded-[var(--radius-pill)] bg-accent px-5 py-2 text-sm font-semibold text-white hover:bg-accent/90 transition-colors shrink-0 ml-auto xl:ml-0"
-            onMouseEnter={() => setOpenDropdown(null)}
+            aria-current={pathname === "/contact" ? "page" : undefined}
+            className={`hidden min-h-[44px] items-center whitespace-nowrap px-5 font-heading text-sm font-bold transition sm:inline-flex ${
+              pathname === "/contact" ? "bg-accent text-white" : "bg-peach text-primary hover:bg-accent hover:text-white"
+            }`}
           >
-            Make an enquiry
+            Find an expert
           </Link>
-
-          <button
-            type="button"
-            className="xl:hidden min-h-[44px] min-w-[44px] flex items-center justify-center rounded-[var(--radius-sm)] border border-border text-primary ml-auto"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-expanded={menuOpen}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
+          <label
+            htmlFor="mobile-nav-toggle"
+            className="flex h-11 w-11 cursor-pointer items-center justify-center border border-border text-primary xl:hidden"
+            aria-label="Open or close the menu"
           >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              {menuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+            <span className="menu-icon flex flex-col gap-[5px]">
+              <span />
+              <span />
+              <span />
+            </span>
+          </label>
         </div>
       </div>
 
-      {menuOpen && (
-        <nav
-          className="xl:hidden border-b border-border bg-white max-h-[calc(100dvh-8rem)] overflow-y-auto overscroll-contain animate-slide-down shadow-[var(--shadow-nav)]"
-          aria-label="Mobile navigation"
-        >
-          <div className="px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] space-y-6">
-            <span className="uk-badge">UK jurisdictions only</span>
-            <Link
-              href="/"
-              className="block min-h-[44px] flex items-center px-2 text-body font-medium hover:text-primary transition-colors border-l-2 border-transparent hover:border-accent"
-              onClick={closeMenu}
-            >
-              Home
-            </Link>
-            <NavDropdown
-              label="Services"
-              links={serviceNavLinks}
-              viewAll={{ label: "All services", href: "/services" }}
-              onNavigate={closeMenu}
-              mobile
-              isOpen={false}
-              onOpen={() => {}}
-              onClose={() => {}}
-            />
-            <Link
-              href="/tax-disputes-explained"
-              className="block min-h-[44px] flex items-center px-2 text-body font-medium hover:text-primary transition-colors border-l-2 border-transparent hover:border-accent"
-              onClick={closeMenu}
-            >
-              Tax disputes explained
-            </Link>
-            <NavDropdown
-              label="Dispute types"
-              links={taxDisputeTypeNavLinks}
-              viewAll={{ label: "All dispute types", href: "/tax-dispute-types" }}
-              onNavigate={closeMenu}
-              mobile
-              isOpen={false}
-              onOpen={() => {}}
-              onClose={() => {}}
-            />
-            <NavDropdown
-              label="Tribunals"
-              links={tribunalNavLinks}
-              viewAll={{ label: "All tribunals", href: "/tribunals-courts" }}
-              onNavigate={closeMenu}
-              mobile
-              isOpen={false}
-              onOpen={() => {}}
-              onClose={() => {}}
-            />
-            <NavDropdown
-              label="HMRC enquiries"
-              links={hmrcInvestigationNavLinks}
-              viewAll={{ label: "All enquiry types", href: "/hmrc-investigation-types" }}
-              onNavigate={closeMenu}
-              mobile
-              isOpen={false}
-              onOpen={() => {}}
-              onClose={() => {}}
-            />
-            <NavDropdown
-              label="Resources"
-              links={resourcesNavLinks}
-              onNavigate={closeMenu}
-              mobile
-              isOpen={false}
-              onOpen={() => {}}
-              onClose={() => {}}
-            />
-            <Link
-              href="/contact"
-              className="flex min-h-[44px] w-full items-center justify-center rounded-[var(--radius-pill)] bg-accent px-4 py-3 text-base font-semibold text-white hover:bg-accent/90 transition-colors"
-              onClick={closeMenu}
-            >
-              Make an enquiry
-            </Link>
-          </div>
+      <div className="hidden max-h-[calc(100vh-80px)] overflow-y-auto border-t border-border bg-white peer-checked:block xl:!hidden">
+        <nav aria-label="Mobile" className="page-container pb-8 pt-2">
+          {groups.map((g) => (
+            <details key={g.label} className="fold border-b border-border" open={groupOn(g)}>
+              <summary className={`flex min-h-[52px] cursor-pointer items-center justify-between font-heading text-lg font-bold ${groupOn(g) ? "text-accent" : "text-primary"}`}>
+                {g.label}
+                <span className="fold-mark text-2xl font-light leading-none text-accent transition-transform" aria-hidden="true">
+                  +
+                </span>
+              </summary>
+              <ul className="pb-4">
+                <li>
+                  <Link href={g.href} aria-current={pathname === g.href ? "page" : undefined} className="block py-2 font-heading text-sm font-bold uppercase tracking-[0.12em] text-accent">
+                    All {g.label.toLowerCase()}
+                  </Link>
+                </li>
+                {g.links.map((l) => (
+                  <li key={l.href}>
+                    <Link href={l.href} aria-current={pathname === l.href ? "page" : undefined} className={`block py-2 ${pathname === l.href ? "font-semibold text-accent" : "text-body"}`}>
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ))}
+          <Link href="/contact" className="mt-6 flex min-h-[48px] items-center justify-center bg-peach font-heading text-sm font-bold text-primary">
+            Find an expert
+          </Link>
         </nav>
-      )}
+      </div>
     </header>
   );
 }

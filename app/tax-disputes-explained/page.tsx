@@ -153,7 +153,7 @@ export default function TaxDisputesExplainedPage() {
             The FTT process requires careful gathering and organisation of documentary evidence including invoices, contracts, emails, accounting records, and due diligence materials, with witness evidence explaining the decisions taken by directors, accountants, or advisers, and legal submissions placing the evidence in the context of statutory provisions, HMRC guidance, and relevant case law.
           </p>
           <p>
-            From filing notice of appeal to FTT hearing typically takes 2–3 years, making early instruction of expert witnesses essential to allow adequate preparation time. Solicitors should instruct experts at case assessment stage, not when the hearing date is listed.{" "}
+            From filing notice of appeal to FTT hearing typically takes 2 to 3 years, making early instruction of expert witnesses essential to allow adequate preparation time. Solicitors should instruct experts at case assessment stage, not when the hearing date is listed.{" "}
             <Link href="/guides/ftt-procedure-expert-evidence">Read our FTT procedure guide →</Link>
           </p>
 
@@ -234,10 +234,10 @@ export default function TaxDisputesExplainedPage() {
             <Link href="/guides/tax-professional-negligence-guide">Tax negligence expert guide →</Link>
           </p>
 
-          <h2>2025–2026 Enforcement Context</h2>
+          <h2>2025 to 2026 Enforcement Context</h2>
           <p>
             The current tax disputes landscape is shaped by three significant developments: HMRC&apos;s dramatically increased transfer pricing yield, the ongoing debate about COP9 methodology (highlighted by judicial scrutiny including HMRC v Harte [2026]), and continued MTIC VAT enforcement with successful expert challenges cancelling substantial assessments. Tax expert evidence is increasingly decisive in tribunal outcomes.{" "}
-            <Link href="/guides/hmrc-enforcement-update-2025">HMRC enforcement update 2025–2026 →</Link>
+            <Link href="/guides/hmrc-enforcement-update-2025">HMRC enforcement update 2025 to 2026 →</Link>
           </p>
         </div>
       </section>

@@ -1,4 +1,5 @@
 ---
+seoTitle: "What a UK Tax Expert Witness Report Should Contain"
 title: "What Should a UK Tax Expert Witness Report Contain? A Practical Guide for Solicitors"
 description: "A practical guide for solicitors on the instructions, analysis, assumptions, limitations and conclusions that may appear in a UK tax expert witness report."
 date: "2026-09-29"

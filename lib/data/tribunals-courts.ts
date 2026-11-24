@@ -97,7 +97,8 @@ export const tribunalsCourts: TribunalCourt[] = [
     slug: "alternative-dispute-resolution-hmrc",
     title: "HMRC Alternative Dispute Resolution: Expert Witness Support UK",
     shortTitle: "HMRC ADR",
-    metaTitle: "HMRC Alternative Dispute Resolution Expert Witness Support UK",
+    // Previously "HMRC Alternative Dispute Resolution Expert Witness Support UK" (too long; it was cut mid-phrase in results).
+    metaTitle: "HMRC Alternative Dispute Resolution Expert Support",
     metaDescription:
       "Guide to HMRC ADR for tax disputes, mediation, internal review, and the role of tax expert witnesses in pre-tribunal resolution.",
     paragraphs: [

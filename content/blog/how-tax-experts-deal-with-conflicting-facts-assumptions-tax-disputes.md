@@ -1,4 +1,5 @@
 ---
+seoTitle: "Conflicting Facts and Assumptions in Tax Disputes"
 title: "How Tax Experts Deal With Conflicting Facts and Assumptions in Tax Disputes"
 description: "How UK tax experts deal with conflicting facts and assumptions in HMRC disputes: disputed evidence, transparent assumptions, alternative scenarios and stated limitations."
 date: "2026-10-13"

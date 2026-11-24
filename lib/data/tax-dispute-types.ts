@@ -92,7 +92,8 @@ export const taxDisputeTypes: TaxDisputeType[] = [
     slug: "employment-related-securities",
     title: "Employment Related Securities Expert Witness UK",
     shortTitle: "Employment Related Securities",
-    metaTitle: "Employment Related Securities Expert Witness UK | ERS Disputes",
+    // Previously identical to the ERS service page title.
+    metaTitle: "Employment Related Securities (ERS) Tax Disputes",
     metaDescription:
       "Expert witness evidence for UK employment related securities disputes, ITEPA 2003, growth shares, EMI options, and s431 election valuation.",
     paragraphs: [
@@ -223,7 +224,9 @@ export const taxDisputeTypes: TaxDisputeType[] = [
     slug: "tax-professional-negligence",
     title: "Tax Professional Negligence Expert Witness UK",
     shortTitle: "Tax Professional Negligence",
-    metaTitle: "Tax Professional Negligence Expert Witness UK | Standard of Care",
+    // Previously "Tax Professional Negligence Expert Witness UK | Standard of Care"; once shortened to fit it
+    // matched the tax professional negligence service page title.
+    metaTitle: "Tax Adviser Negligence: Standard of Care Evidence",
     metaDescription:
       "Expert witness evidence for UK tax professional negligence claims, standard of care, PCRT, but-for analysis, and loss quantification.",
     paragraphs: [

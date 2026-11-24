@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { fitDescription, fitTitle } from "@/lib/fit";
 import { SITE_URL } from "./site";
 
 type PageMeta = {
@@ -18,8 +19,12 @@ export function createMetadata({
 }: PageMeta): Metadata {
   const url = `${SITE_URL}${path}`;
 
+  // "Page | Brand" when it fits in 60 characters, otherwise shortened at a natural break (never mid-word);
+  // absolute, so a layout template cannot add the brand a second time. Descriptions fitted to 110–155.
+  title = fitTitle(title, "fit");
+  description = fitDescription(description);
   return {
-    title,
+    title: { absolute: title },
     description,
     metadataBase: new URL(SITE_URL),
     alternates: {
